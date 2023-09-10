@@ -23,7 +23,7 @@ describe("Client", () => {
     // then
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect(() => new Analytics(undefined as any)).toThrowError(
-      "You must pass your June workspace's write key.",
+      "You must pass your Astrolabe workspace's write key.",
     );
   });
 
@@ -32,11 +32,11 @@ describe("Client", () => {
     // then
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect(() => new Analytics({} as any)).toThrowError(
-      "You must pass your June workspace's write key.",
+      "You must pass your Astrolabe workspace's write key.",
     );
   });
 
-  it("should track events and send it to api.june.so/sdk/batch", async () => {
+  it("should track events and send it to webhook-dev.getastrolabe.com/v1/sdk/batch", async () => {
     // given
     const fetchAction = jest.fn().mockResolvedValue({ status: 200 });
 
@@ -72,7 +72,7 @@ describe("Client", () => {
     });
   });
 
-  it("should identify and send it to api.june.so/sdk/batch", async () => {
+  it("should identify and send it to webhook-dev.getastrolabe.com/v1/sdk/batch", async () => {
     // given
     const fetchAction = jest.fn().mockResolvedValue({ status: 200 });
 
@@ -107,7 +107,7 @@ describe("Client", () => {
     });
   });
 
-  it("should group and send it to api.june.so/sdk/batch", async () => {
+  it("should group and send it to webhook-dev.getastrolabe.com/v1/sdk/batch", async () => {
     // given
     const fetchAction = jest.fn().mockResolvedValue({ status: 200 });
 
@@ -144,7 +144,7 @@ describe("Client", () => {
     });
   });
 
-  it("should flush events and send it to api.june.so/sdk/batch", async () => {
+  it("should flush events and send it to webhook-dev.getastrolabe.com/v1/sdk/batch", async () => {
     // given
     const fetchAction = jest.fn().mockResolvedValue({ status: 200 });
 
