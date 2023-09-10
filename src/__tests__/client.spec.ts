@@ -3,6 +3,7 @@ import { Analytics } from "../client";
 
 const extractData = (fetchAction: jest.Mock, i = 0) => {
   const [url, request] = fetchAction.mock.calls[i];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { body } = request as any;
   const { batch } = JSON.parse(body);
   return { url, batch };
@@ -20,20 +21,22 @@ describe("Client", () => {
   it("should not be able to create a new instance without writeKey", () => {
     // given
     // then
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect(() => new Analytics(undefined as any)).toThrowError(
-      "You must pass your Astrolabe workspace's write key.",
+      "You must pass your June workspace's write key.",
     );
   });
 
   it("should not be able to create a new instance with object writeKey", () => {
     // given
     // then
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect(() => new Analytics({} as any)).toThrowError(
-      "You must pass your Astrolabe workspace's write key.",
+      "You must pass your June workspace's write key.",
     );
   });
 
-  it("should track events and send it to webhook-dev.getastrolabe.com/v1/sdk/batch", async () => {
+  it("should track events and send it to api.june.so/sdk/batch", async () => {
     // given
     const fetchAction = jest.fn().mockResolvedValue({ status: 200 });
 
@@ -58,7 +61,7 @@ describe("Client", () => {
 
     const { url, batch } = extractData(fetchAction);
 
-    expect(url).toBe("https://webhook-dev.getastrolabe.com/v1/sdk/batch");
+    expect(url).toBe("https://api.june.so/sdk/batch");
     expect(batch).toHaveLength(1);
     expect(batch[0]).toMatchObject({
       type: "track",
@@ -69,7 +72,7 @@ describe("Client", () => {
     });
   });
 
-  it("should identify and send it to webhook-dev.getastrolabe.com/v1/sdk/batch", async () => {
+  it("should identify and send it to api.june.so/sdk/batch", async () => {
     // given
     const fetchAction = jest.fn().mockResolvedValue({ status: 200 });
 
@@ -93,7 +96,7 @@ describe("Client", () => {
 
     const { url, batch } = extractData(fetchAction);
 
-    expect(url).toBe("https://webhook-dev.getastrolabe.com/v1/sdk/batch");
+    expect(url).toBe("https://api.june.so/sdk/batch");
     expect(batch).toHaveLength(1);
     expect(batch[0]).toMatchObject({
       type: "identify",
@@ -104,7 +107,7 @@ describe("Client", () => {
     });
   });
 
-  it("should group and send it to webhook-dev.getastrolabe.com/v1/sdk/batch", async () => {
+  it("should group and send it to api.june.so/sdk/batch", async () => {
     // given
     const fetchAction = jest.fn().mockResolvedValue({ status: 200 });
 
@@ -129,7 +132,7 @@ describe("Client", () => {
 
     const { url, batch } = extractData(fetchAction);
 
-    expect(url).toBe("https://webhook-dev.getastrolabe.com/v1/sdk/batch");
+    expect(url).toBe("https://api.june.so/sdk/batch");
     expect(batch).toHaveLength(1);
     expect(batch[0]).toMatchObject({
       type: "group",
@@ -141,7 +144,7 @@ describe("Client", () => {
     });
   });
 
-  it("should flush events and send it to webhook-dev.getastrolabe.com/v1/sdk/batch", async () => {
+  it("should flush events and send it to api.june.so/sdk/batch", async () => {
     // given
     const fetchAction = jest.fn().mockResolvedValue({ status: 200 });
 
@@ -164,7 +167,7 @@ describe("Client", () => {
     // then
     expect(fetchAction).toHaveBeenCalledTimes(1);
     const { url, batch } = extractData(fetchAction);
-    expect(url).toBe("https://webhook-dev.getastrolabe.com/v1/sdk/batch");
+    expect(url).toBe("https://api.june.so/sdk/batch");
     expect(batch).toHaveLength(10);
   });
 
@@ -198,7 +201,7 @@ describe("Client", () => {
     expect(fetchAction).toHaveBeenCalledTimes(1);
     const { url, batch } = extractData(fetchAction);
 
-    expect(url).toBe("https://webhook-dev.getastrolabe.com/v1/sdk/batch");
+    expect(url).toBe("https://api.june.so/sdk/batch");
     expect(batch).toHaveLength(2);
 
     expect(batch[0]).toMatchObject({
@@ -246,7 +249,7 @@ describe("Client", () => {
     expect(fetchAction).toHaveBeenCalledTimes(2);
     const { url, batch } = extractData(fetchAction, 1);
 
-    expect(url).toBe("https://webhook-dev.getastrolabe.com/v1/sdk/batch");
+    expect(url).toBe("https://api.june.so/sdk/batch");
     expect(batch).toHaveLength(1);
     expect(batch[0]).toMatchObject({
       type: "track",
@@ -281,7 +284,7 @@ describe("Client", () => {
     expect(fetchAction).toHaveBeenCalledTimes(4);
     const { url, batch } = extractData(fetchAction, 3);
 
-    expect(url).toBe("https://webhook-dev.getastrolabe.com/v1/sdk/batch");
+    expect(url).toBe("https://api.june.so/sdk/batch");
     expect(batch).toHaveLength(1);
     expect(batch[0]).toMatchObject({
       type: "track",
