@@ -5,13 +5,13 @@
 To install the Astrolabe SDK in your Node.js project, use the npm package manager:
 
 ```sh
-npm install @astrolabe/analytics-node --save
+npm install @astrolabe-ai/analytics-node --save
 ```
 
 Alternatively, use yarn:
 
 ```sh
-yarn add @astrolabe/analytics-node
+yarn add @astrolabe-ai/analytics-node
 ```
 
 ## Configuration
@@ -19,13 +19,13 @@ yarn add @astrolabe/analytics-node
 First, you'll need to import the SDK into your application:
 
 ```js
-import { Analytics } from '@astrolabe/analytics-node';
+import { Analytics } from "@astrolabe-ai/analytics-node";
 ```
 
 Next, instantiate the client using the write key you've received when you created your Astrolabe account:
 
 ```js
-const analytics = new Analytics('YOUR_WRITE_KEY');
+const analytics = new Analytics("YOUR_WRITE_KEY");
 ```
 
 Now you can use the analytics instance to track events, identify users, and more.
@@ -49,7 +49,7 @@ Initializes a new `Analytics` instance.
 Example:
 
 ```javascript
-const analytics = new Analytics('YOUR_WRITE_KEY', {
+const analytics = new Analytics("YOUR_WRITE_KEY", {
   flushAt: 50,
   flushInterval: 30000, // flush every 30 seconds
 });
@@ -61,10 +61,10 @@ To track events, you can use the `track` method:
 
 ```javascript
 analytics.track({
-  userId: 'USER_ID',
-  event: 'Signed In',
+  userId: "USER_ID",
+  event: "Signed In",
   properties: {
-    browser: 'chrome',
+    browser: "chrome",
   },
 });
 ```
@@ -84,12 +84,12 @@ To identify users, you can use the `identify` method:
 
 ```javascript
 analytics.identify({
-  userId: 'USER_ID',
+  userId: "USER_ID",
   traits: {
-    email: 'test@example.com',
+    email: "test@example.com",
     // Optional
-    name: 'Joe Bloggs',
-    avatar: 'https://avatar.com/asd809sdhoif9as10nc29.png',
+    name: "Joe Bloggs",
+    avatar: "https://avatar.com/asd809sdhoif9as10nc29.png",
     // Add anything else about the user here
   },
 });
@@ -109,12 +109,12 @@ To group users by organization or company, use the `group` method:
 
 ```javascript
 analytics.group({
-  userId: 'USER_ID',
-  groupId: 'GROUP_ID',
+  userId: "USER_ID",
+  groupId: "GROUP_ID",
   traits: {
-    name: 'Acme Inc',
+    name: "Acme Inc",
     // Optional
-    avatar: 'https://avatar.com/asd809sdhoif9as10nc29.png',
+    avatar: "https://avatar.com/asd809sdhoif9as10nc29.png",
     // Add anything else about the company here
   },
 });
@@ -131,7 +131,7 @@ Parameters:
 
 # Serverless environments
 
-In serverless environemnts like AWS Lambda, your environment may finish the code execution before Astrolabe SDK is able to send events to Astrolabe API. 
+In serverless environemnts like AWS Lambda, your environment may finish the code execution before Astrolabe SDK is able to send events to Astrolabe API.
 
 You can use the `flush` method to send all queued events to Astrolabe or you can configure the SDK to flush events automatically.
 
@@ -146,7 +146,7 @@ analytics.flush();
 If you set `flushAt` to `1`, the SDK will flush events automatically after every event.
 
 ```javascript
-const analytics = new Analytics('YOUR_WRITE_KEY', {
+const analytics = new Analytics("YOUR_WRITE_KEY", {
   flushAt: 1,
 });
 ```

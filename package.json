@@ -1,11 +1,11 @@
 {
-  "name": "@astrolabe/analytics-node",
+  "name": "@astrolabe-ai/analytics-node",
   "version": "1.0.0",
   "description": "The hassle-free way to integrate analytics into any Node.js application",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
-  "repository": "@astrolabe/analytics-node",
+  "repository": "@astrolabe-ai/analytics-node",
   "author": {
     "name": "Astrolabe",
     "url": "https://astrolabe.so"
